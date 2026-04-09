@@ -22,7 +22,8 @@ class Customer:
             products_cost += price * count
         return products_cost
 
-    def calculate_trip_cost(self, shop: Any, fuel_price: int | float) -> int | float:
+    def calculate_trip_cost(self, shop: Any,
+                            fuel_price: int | float) -> int | float:
         distance = self.get_distance(shop.location)
 
         fuel_needed = self.car.get_fuel_needed(distance * 2)
