@@ -18,9 +18,12 @@ class Customer:
     def get_cart_cost(self, shop: Any) -> float:
         products_cost = 0
         for product, count in self.product_cart.items():
-            price = shop.products.get(product, 0)
+            if product not in shop.products:
+                return float("inf")
+            price = shop.products[product]
             products_cost += price * count
-        return products_cost
+
+        return round(products_cost, 2)
 
     def calculate_trip_cost(self, shop: Any,
                             fuel_price: int | float) -> int | float:

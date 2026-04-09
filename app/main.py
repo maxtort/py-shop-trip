@@ -2,10 +2,13 @@ import json
 from app.shop import Shop
 from app.customer import Customer
 from app.car import Car
+from pathlib import Path
 
 
 def shop_trip() -> None:
-    with open("config.json", "r") as file:
+    current_dir = Path(__file__).parent
+    config_path = current_dir.parent / "config.json"
+    with open(config_path, "r") as file:
         data = json.load(file)
 
     fuel_price = data["FUEL_PRICE"]
@@ -33,7 +36,7 @@ def shop_trip() -> None:
         if index > 0:
             print()
 
-        print(f"{customer.name} has {customer.money} dollars")
+        print(f"{customer.name} has {round(customer.money, 2)} dollars")
         home_location = list(customer.location)
 
         cheapest_shop = None
