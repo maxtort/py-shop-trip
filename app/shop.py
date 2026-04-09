@@ -21,7 +21,7 @@ class Shop:
         total_cost = 0
         for product, count in customer.product_cart.items():
             price = self.products.get(product, 0)
-            item_total = price * count
+            item_total = round(price * count, 2)
             total_cost += item_total
 
             display_item_cost = (
@@ -29,7 +29,7 @@ class Shop:
                 if item_total == int(item_total) else item_total
             )
             print(f"{count} {product}s for {display_item_cost} dollars")
-
+        total_cost = round(total_cost, 2)
         display_total = (
             int(total_cost) if total_cost == int(total_cost) else total_cost
         )

@@ -15,14 +15,14 @@ class Customer:
         self.money = money
         self.car = car
 
-    def get_cart_cost(self, shop: Any) -> int:
+    def get_cart_cost(self, shop: Any) -> float:
         products_cost = 0
         for product, count in self.product_cart.items():
-            price = shop.products[product]
+            price = shop.products.get(product, 0)
             products_cost += price * count
         return products_cost
 
-    def calculate_trip_cost(self, shop: Any, fuel_price: int | float) -> int:
+    def calculate_trip_cost(self, shop: Any, fuel_price: int | float) -> int | float:
         distance = self.get_distance(shop.location)
 
         fuel_needed = self.car.get_fuel_needed(distance * 2)
